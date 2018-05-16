@@ -26,20 +26,38 @@ void imprimir(int **mapa) {
 	cout << endl;
 }
 
-bool es_posible(int **m, int ii, int jj) {
+bool es_posible(int **m, int b, int a) {
 	for (int i = 0; i < n; i++) {
-		if (m[i][jj] == 1) return false;
+		if (m[i][b] == 1) return false;
 	}
 	for (int j = 0; j < n; j++) {
-		if (m[ii][j] == 1) return false;
+		if (m[a][j] == 1) return false;
 	}
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if (i != ii || j != jj) {
-				if (m[i][j] == 1) return false;
-			}
-		}
+	int k = 0;
+	while (a + k < 8 && b + k < 8) {
+
+		if (m[a + k][b + k] == 1) return false;
+		k = k + 1;
 	}
+	k = 0;
+	while (a - k > 0 && b - k > 0) {
+
+		if (m[a - k][b - k] == 1) return false;
+		k = k + 1;
+	}
+	k = 0;
+	while (a - k > 0 && b + k < 8) {
+
+		if (m[a - k][b + k] == 1) return false;
+		k = k + 1;
+	}
+	k = 0;
+	while (a + k < 8 && b - k > 0) {
+
+		if (m[a + k][b - k] == 1) return false;
+		k = k + 1;
+	}
+
 	return true;
 }
 
